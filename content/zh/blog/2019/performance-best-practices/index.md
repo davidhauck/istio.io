@@ -10,7 +10,7 @@ keywords: [performance,scalability,scale,benchmarks]
 
 服务网格为应用部署增加了很多功能，包括[流量策略](/zh/docs/concepts/what-is-istio/#traffic-management)、[可观察性](/zh/docs/concepts/what-is-istio/#observability)和[安全通信](/zh/docs/concepts/what-is-istio/#security)。但是，无论是时间（增加的延迟）还是资源（CPU 周期），向环境中添加服务网格都是有代价的。要就服务网格是否适合您的情况做出明智的决定，评估应用与服务网格一起部署时的性能非常重要。
 
-今年早些时候，我们发布了关于 Istio 1.1 性能改进的[博客](/zh/blog/2019/istio1.1_perf/)。在发布 [Istio 1.2](/zh/news/releases/1.2.x/announcing-1.2) 之后，我们希望提供指导和工具，以帮助您在可用于生产的 Kubernetes 环境中对 Istio 的数据平面性能进行基准测试。
+今年早些时候，我们发布了关于 Istio 1.1 性能改进的[博客](/zh/blog/2019/istio1.1_perf/)。在发布 [Istio 1.2](/zh/news/releases/1.2.x/announcing-1.2/) 之后，我们希望提供指导和工具，以帮助您在可用于生产的 Kubernetes 环境中对 Istio 的数据平面性能进行基准测试。
 
 总体而言，我们发现 Istio [sidecar 代理](/zh/docs/ops/deployment/architecture/#envoy)的延迟取决于并发连接数。以每秒 1000 个请求（RPS）的速度，通过 16 个连接，Istio 延迟在 50% 时增加 **3 毫秒**，在 99% 时增加 **10 毫秒**。
 
