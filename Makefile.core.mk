@@ -113,7 +113,6 @@ netlify_install:
 		@babel/core@v7.7.4 \
 		@babel/cli@v7.7.4 \
 		@babel/preset-env@v7.7.4
-	@npm install --production --save-dev \
 		babel-preset-minify@v0.5.1
 	@npm install --save-dev \
 		@babel/polyfill@v7.7.0
