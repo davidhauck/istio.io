@@ -125,6 +125,9 @@ netlify_archive: netlify_install archive
 archive:
 	@scripts/build_archive_site.sh "$(baseurl)"
 
+archive-version:
+	@scripts/archive_version.sh
+
 update_ref_docs:
 	@scripts/grab_reference_docs.sh $(SOURCE_BRANCH_NAME)
 

@@ -1,0 +1,3 @@
+[submodule "archive.istio.io"]
+	path = archive.istio.io
+	url = https://github.com/davidhauck/archive.istio.io
