@@ -9,10 +9,10 @@ build:
 	@scripts/build_site.sh
 
 gen: build
-	@scripts/gen_site.sh ""
+	@scripts/gen_site.sh "/latest"
 
 gen_nominify: build
-	@scripts/gen_site.sh "" -no_minify
+	@scripts/gen_site.sh "/latest" -no_minify
 
 opt:
 	@scripts/opt_site.sh
@@ -53,6 +53,9 @@ netlify_archive: netlify_install archive
 
 archive:
 	@scripts/gen_archive_site.sh "$(baseurl)"
+
+archive-version: gen
+	@$(docker) scripts/archive_version.sh
 
 update_ref_docs:
 	@scripts/grab_reference_docs.sh
