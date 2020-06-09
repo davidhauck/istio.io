@@ -16,7 +16,7 @@ build:
 	@$(docker) scripts/build_site.sh
 
 gen: build
-	@$(docker) scripts/gen_site.sh ""
+	@$(docker) scripts/gen_site.sh "/latest"
 
 opt:
 	@$(docker) scripts/opt_site.sh
@@ -31,7 +31,7 @@ lint: clean_public build gen
 	@$(docker) scripts/lint_site.sh
 
 serve: build
-	@docker run -t -i --sig-proxy=true --rm -v $(shell pwd):/site -w /site -p 1313:1313 $(img) hugo serve --baseURL "http://${ISTIO_SERVE_DOMAIN}:1313/" --bind 0.0.0.0 --disableFastRender
+	@docker run -t -i --sig-proxy=true --rm -v $(shell pwd):/site -w /site -p 1313:1313 $(img) hugo serve --baseURL "http://${ISTIO_SERVE_DOMAIN}:1313/latest/" --bind 0.0.0.0 --disableFastRender
 
 install:
 	@npm install -g sass sass-lint typescript tslint @babel/cli @babel/core svgstore-cli
@@ -46,6 +46,9 @@ netlify_archive:
 
 archive:
 	@$(docker) scripts/gen_archive_site.sh "$(baseurl)"
+
+archive-version: gen
+	@$(docker) scripts/archive_version.sh
 
 prow:
 	@scripts/build_site.sh

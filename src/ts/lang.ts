@@ -16,11 +16,12 @@ function handleLanguageSwitch(): void {
     listen(getById("switch-lang"), click, () => {
         const url = new URL(window.location.href);
         let path = url.pathname;
-        if (path.startsWith("/zh")) {
-            path = path.substr(3);
+        if (path.includes("/zh")) {
+            path = path.replace(/\/zh/g, "");
             createCookie("nf_lang", "en");
         } else {
-            path = "/zh" + path;
+            const pos = path.indexOf("/", 1);
+            path = path.substr(0, pos) + "/zh" + path.substr(pos);
             createCookie("nf_lang", "zh");
         }
         url.pathname = path;
@@ -32,8 +33,8 @@ function handleLanguageSwitch(): void {
     listen(getById("switch-lang-en"), click, () => {
         const url = new URL(window.location.href);
         let path = url.pathname;
-        if (path.startsWith("/zh")) {
-            path = path.substr(3);
+        if (path.includes("/zh")) {
+            path = path.replace(/\/zh/g, "");
         }
         url.pathname = path;
 
@@ -44,8 +45,10 @@ function handleLanguageSwitch(): void {
     listen(getById("switch-lang-zh"), click, () => {
         const url = new URL(window.location.href);
         let path = url.pathname;
-        if (!path.startsWith("/zh")) {
-            path = "/zh" + path;
+        if (!path.includes("/zh")) {
+            const pos = path.indexOf("/", 1);
+            path = path.substr(0, pos) + "/zh" + path.substr(pos);
+            createCookie("nf_lang", "zh");
         }
         url.pathname = path;
 
